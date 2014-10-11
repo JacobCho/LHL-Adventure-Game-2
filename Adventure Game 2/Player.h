@@ -14,9 +14,12 @@
 @property (nonatomic, assign) int health;
 @property (nonatomic, strong) Room *currentRoom;
 @property (nonatomic, assign) BOOL hasGem;
+@property (nonatomic, strong) NSString *playerName;
 
 -(void)playerInfo:(Player *)player;
 -(void)moveRoom:(Player *)player moveToRoom:(Room *)room;
 -(void)moveDirection:(Player *)player;
+-(void)enterPlayerName:(Player *)player;
+
 
 @end

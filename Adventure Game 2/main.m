@@ -150,6 +150,8 @@ int main(int argc, const char * argv[]) {
         player.currentRoom = room1;
         player.health = 10;
         
+        [player enterPlayerName:player];
+        
         room13.hasTreasure = YES;
         room11.hasCube = YES;
         

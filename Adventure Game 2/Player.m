@@ -48,6 +48,11 @@
         
         NSLog(@"This room contains the gelatinous cube! It attacks you for 5 HP");
         player.health -= 5;
+        
+        if (player.health == 0) {
+            NSLog(@"You have died. Game over");
+            exit(0);
+        }
     }
 
         [player playerInfo:player];
@@ -86,6 +91,16 @@
         }
     }
 }
+
+-(void)enterPlayerName:(Player *)player {
+    char str [100];
+    NSLog(@"Please enter your name:");
+    scanf("%100s", str);
+    player.playerName = [[NSString alloc] initWithUTF8String: str];
+    
+    NSLog(@"Your name is now: %@", player.playerName);
+}
+
 
 
 
