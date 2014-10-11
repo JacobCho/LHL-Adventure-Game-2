@@ -35,16 +35,23 @@
 
 -(void)moveRoom:(Player *)player moveToRoom:(Room *)room {
     
+
+    player.currentRoom = room;
     
-//    if (room != player.currentRoom.north || player.currentRoom.south || player.currentRoom.east || player.currentRoom.west) {
-//        
-//        NSLog(@"You can not move to that room");
-//    }
-//    else {
-        player.currentRoom = room;
+    if (player.currentRoom.hasTreasure) {
+        
+        NSLog(@"You found treasure! Health increased by 10");
+        player.health += 10;
+    }
+    
+    if (player.currentRoom.hasCube) {
+        
+        NSLog(@"This room contains the gelatinous cube! It attacks you for 5 HP");
+        player.health -= 5;
+    }
 
         [player playerInfo:player];
-//    }
+
 }
 
 -(void)moveDirection:(Player *)player {
@@ -60,26 +67,22 @@
 
 
         if ([direction isEqualToString:@"north"]) {
-            player.currentRoom = player.currentRoom.north;
-            [player playerInfo:player];
-            
+            [player moveRoom:player moveToRoom:player.currentRoom.north];
+
         }
 
         if ([direction isEqualToString:@"south"]) {
-            player.currentRoom = player.currentRoom.south;
-            [player playerInfo:player];
+            [player moveRoom:player moveToRoom:player.currentRoom.south];
             
         }
 
         if ([direction isEqualToString:@"east"]) {
             
-            player.currentRoom = player.currentRoom.east;
-            [player playerInfo:player];
+            [player moveRoom:player moveToRoom:player.currentRoom.east];
         }
 
         if ([direction isEqualToString:@"west"]) {
-            player.currentRoom = player.currentRoom.west;
-            [player playerInfo:player];
+            [player moveRoom:player moveToRoom:player.currentRoom.west];
         }
     }
 }
